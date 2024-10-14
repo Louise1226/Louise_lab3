@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paul George - NBA 球員介紹</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F4F4F4;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            width: 100vw;
+            height: 100vh;
+            padding: 20px;
+            overflow-y: scroll;
+        }
+        header {
+            background-color: #006BB6; /* 費城76人藍色 */
+            padding: 20px;
+            text-align: center;
+            color: rgb(181, 145, 145);
+        }
+        header h1 {
+            font-size: 10em; /* 標題字體大小 */
+            margin: 0;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .gallery img {
+            max-width: 90%; /* 圖片寬度為90% */
+            height: auto;
+            margin: 10px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 2px solid #ED174C; /* 紅色邊框 */
+        }
+        .gallery img:hover {
+            transform: scale(1.05); /* 懸停效果 */
+        }
+        p {
+            line-height: 1.8;
+            font-size: 1.8em; /* 段落字體大小 */
+            color: #333;
+            text-align: center;
+            padding: 0 10px;
+        }
+        .stats {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .stats ul {
+            padding: 0;
+            list-style: none;
+            display: inline-block;
+            text-align: left;
+        }
+        .stats li {
+            padding: 10px;
+            background: #EEEEEE;
+            margin: 5px 0;
+            font-size: 1.8em; /* 列表字體大小 */
+        }
+        #careerDetails, #growthStory, #shoeLineup {
+            display: none;
+            margin-top: 20px;
+            text-align: center;
+            padding: 0 10px;
+            font-size: 1.8em; /* 詳細內容字體大小 */
+        }
+        .btn {
+            background-color: #ED174C; /* 紅色按鈕 */
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 1.8em; /* 按鈕字體大小 */
+        }
+        .btn:hover {
+            background-color: #006BB6; /* 藍色變化 */
+        }
+        .modal {
+            display: none; /* 初始隱藏 */
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal img {
+            margin: auto;
+            display: block;
+            max-width: 80%; /* 最大寬度設定為80% */
+            max-height: 80%; /* 最大高度設定為80% */
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2em;
+            font-weight: bold;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>Paul George</h1>
+        <p>全面技術、防守強大、NBA超巨</p>
+    </header>
+
+    <section>
+        <h2 style="font-size: 3em; text-align: center;">球場上的 保羅喬治</h2>
+        <div class="gallery">
+            <img src="https://a57.foxsports.com/statics.foxsports.com/www.foxsports.com/content/uploads/2024/01/1280/1280/Paul-George-horizontal-011624.jpg.jpg?ve=1&tl=1" alt="Paul George playing basketball" onclick="openModal(this.src)">
+            <img src="https://slamgoods.com/cdn/shop/products/slam-246-paul-george-cover-2-of-2-456250.jpg?v=1695827074&width=1024" alt="Paul George on the court" onclick="openModal(this.src)">
+        </div>
+
+        <div class="stats">
+            <h2 style="font-size: 3em;">基本資料</h2>
+            <ul>
+                <li><strong>出生日期：</strong>1990年5月2日</li>
+                <li><strong>身高：</strong>6英尺8英寸 (203 公分)</li>
+                <li><strong>體重：</strong>220磅 (100 公斤)</li>
+                <li><strong>位置：</strong>小前鋒 / 得分後衛</li>
+                <li><strong>現效力球隊：</strong>Philadelphia 76ers (費城76人)</li>
+            </ul>
+        </div>
+
+        <button class="btn" onclick="toggleCareerDetails()">顯示更多職業生涯亮點</button>
+        <button class="btn" onclick="toggleGrowthStory()">顯示成長經歷</button>
+        <button class="btn" onclick="toggleShoeLineup()">顯示歷代球鞋介紹</button>
+
+        <div id="careerDetails">
+            <h2 style="font-size: 3em;">職業生涯亮點</h2>
+            <p>Paul George 於 2010 年被印第安納步行者隊在 NBA 選秀第十順位選中，隨後快速成為聯盟中備受關注的球員之一。他以出色的防守和多功能的進攻能力著稱，能夠在外線投射和突破籃下之間切換自如。</p>
+            <p>2013 年，他獲得了 NBA 最佳進步球員獎 (NBA Most Improved Player Award)，並帶領步行者進入東區決賽。在與當時強大的邁阿密熱火對抗中，George 展現了巨大的競爭力，被認為是聯盟中的頂級雙向球員。</p>
+            <p>2014 年，他在美國國家籃球隊訓練營中遭遇了嚴重的腿部骨折，這場意外讓他的職業生涯一度陷入危機。然而，他不僅成功康復，而且在重返賽場後表現更加出色，成為聯盟中數一數二的球星，並多次入選 NBA 全明星陣容。</p>
+            <p>2017 年，George 被交易至奧克拉荷馬雷霆，與 Russell Westbrook 一同作戰。他在雷霆的表現更上一層樓，特別是在 2018-2019 賽季，他在 MVP 和最佳防守球員的討論中占據重要地位。</p>
+            <p>之後，George 加盟了洛杉磯快艇，與 Kawhi Leonard 組成了聯盟中最具防守威脅的前鋒搭檔，並幫助快艇隊成為冠軍爭奪者。他以穩定的攻防表現，繼續證明自己是聯盟中最全面的球員之一。</p>
+        </div>
+
+        <div id="growthStory">
+            <h2 style="font-size: 3em;">成長經歷</h2>
+            <p>Paul George 出生於加利福尼亞州帕姆代爾，從小就展現出對籃球的濃厚興趣。他的姐姐 Teiosha 也是一位籃球運動員，這對 George 的籃球道路產生了深遠的影響。George 從年少時期便開始在當地的籃球場上磨練自己的技術，他的潛力逐漸被發現。</p>
+            <p>雖然 George 並非來自於傳統的籃球名校，但他的天賦讓他在 NCAA 的 Fresno State 展露頭角。在校隊的幾年中，他不斷提升自己，並且展現出領袖風範。經過不懈努力，他於 2010 年參加了 NBA 選秀，並成功被印第安納步行者隊選中，開始了他的職業生涯。隨著時間的推移，他在聯盟中的地位不斷上升，並以出色的表現贏得了廣泛的讚譽。這一路走來的艱辛與努力，使他在籃球界的地位更加鞏固。</p>
+        </div>
+
+        <div id="shoeLineup">
+            <h2 style="font-size: 3em;">歷代球鞋介紹</h2>
+            <h3 style="font-size: 2.5em;">PG 1</h3>
+            <img src="https://www.si.com/.image/t_share/MTY4MTA2MzI0ODM0MTk4ODAx/nike-pg-1-leadjpg.jpg" alt="PG 1" style="max-width: 600px; height: auto;" onclick="openModal(this.src)">
+            <p>PG 1 是 Paul George 的首雙簽名鞋，設計旨在滿足其全方位的比賽需求。鞋款配備了 Zoom Air 緩震技術，提供卓越的舒適性和反應速度，非常適合他的靈活打球風格。</p>
+            
+            <h3 style="font-size: 2.5em;">PG 2</h3>
+            <img src="https://kenlu.net/wp-content/uploads/2018/10/PlayStation-x-Nike-PG-2.5-Grey-1.jpg" alt="PG 2" style="max-width: 600px; height: auto;" onclick="openModal(this.src)">
+            <p>PG 2 在設計上更加注重支撐性，並加入了更加堅固的鞋面材料，使球員在比賽中的穩定性大幅提升。它也保持了出色的緩震表現，幫助球員更輕鬆地完成快速轉換和跳躍。</p>
+            
+            <h3 style="font-size: 2.5em;">PG 3</h3>
+            <img src="https://static.nike.com/a/images/f_auto/dpr_3.0,cs_srgb/h_500,c_limit/qkh3c9yhvp8ggdn6rx2a/pg-3.jpg" alt="PG 3" style="max-width: 600px; height: auto;" onclick="openModal(this.src)">
+            <p>PG 3 將輕量化與穩定性相結合，鞋面使用了網狀材料，增加透氣性並減輕整體重量。此外，它的中底提供了良好的反應能力，適合需要快速移動的球員。</p>
+            
+            <h3 style="font-size: 2.5em;">PG 4</h3>
+            <img src="https://i.ytimg.com/vi/mNs7KSuQi2o/maxresdefault.jpg" alt="PG 4" style="max-width: 600px; height: auto;" onclick="openModal(this.src)">
+            <p>PG 4 是 Paul George 在設計上的一次大膽嘗試，運用獨特的鞋面設計和顏色搭配，展現了他的個性與風格。鞋款的 Zoom Air 緩震系統提升了舒適感，適合長時間比賽。</p>
+
+            <h3 style="font-size: 2.5em;">PG 5</h3>
+            <img src="https://cdn-origin.cool-style.com.tw/cool/2021/07/Nike-PG-5-PlayStation-5-CW3144-400-Release-Date-4.jpeg" alt="PG 5" style="max-width: 600px; height: auto;" onclick="openModal(this.src)">
+            <p>PG 5 在設計上更加專注於對速度和靈活性的提升，採用輕量材料和先進的鞋墊技術，提供優異的支撐和舒適性，使球員能夠更好地控制比賽節奏。</p>
+
+            <h3 style="font-size: 2.5em;">PG 6</h3>
+            <img src="https://sneakernews.com/wp-content/uploads/2022/06/nike-pg-6-do9823-100-release-date-6.jpg" alt="PG 6" style="max-width: 600px; height: auto;" onclick="openModal(this.src)">
+            <p>PG 6 結合了全新的設計元素和材料，增強了抓地力和耐用性。這款鞋特別針對快節奏的比賽環境進行了改進，確保球員在關鍵時刻可以發揮出最佳表現。</p>
+        </div>
+    </section>
+</div>
+
+<!-- Modal for enlarged images -->
+<div id="modal" class="modal" onclick="closeModal()">
+    <span class="close" onclick="closeModal()">&times;</span>
+    <img id="modalImg" src="" alt="Enlarged Image">
+</div>
+
+<script>
+    function toggleCareerDetails() {
+        const careerDetails = document.getElementById('careerDetails');
+        careerDetails.style.display = careerDetails.style.display === 'none' || careerDetails.style.display === '' ? 'block' : 'none';
+    }
+
+    function toggleGrowthStory() {
+        const growthStory = document.getElementById('growthStory');
+        growthStory.style.display = growthStory.style.display === 'none' || growthStory.style.display === '' ? 'block' : 'none';
+    }
+
+    function toggleShoeLineup() {
+        const shoeLineup = document.getElementById('shoeLineup');
+        shoeLineup.style.display = shoeLineup.style.display === 'none' || shoeLineup.style.display === '' ? 'block' : 'none';
+    }
+
+    function openModal(src) {
+        const modal = document.getElementById('modal');
+        const modalImg = document.getElementById('modalImg');
+        modal.style.display = "flex";
+        modalImg.src = src;
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('modal');
+        modal.style.display = "none";
+    }
+</script>
+</body>
+</html>
